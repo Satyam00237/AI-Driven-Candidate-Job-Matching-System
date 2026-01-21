@@ -16,7 +16,10 @@ function CandidateUpload({ refresh }) {
       refresh();
       e.target.reset();
     } catch (err) {
-      alert(err.response?.data?.error || "Upload failed");
+      console.error("Upload error details:", err.response?.data);
+      const errorMessage = err.response?.data?.error || "Upload failed";
+      const errorDetails = err.response?.data?.details || "";
+      alert(`${errorMessage}\n${errorDetails}`);
     }
   };
 
